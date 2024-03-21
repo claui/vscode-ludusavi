@@ -1,0 +1,38 @@
+{
+  "name": "vscode-ludusavi",
+  "license": "SEE LICENSE IN README.md",
+  "engines": {
+    "node": "^18.0.0"
+  },
+  "comments": {
+    "devDependencies": {
+      "@yarnpkg/sdks": "Before upgrading to a newer major version, check Node.js version compatibility. When bumping the major version, keep it in sync with `yarn set version` invocations."
+    },
+    "resolutions": {
+      "@vscode/vsce": "Private patch for Yarn v4 compatibility. Keep in sync with the version of the `@vscode/vsce` dependency."
+    }
+  },
+  "devDependencies": {
+    "@yarnpkg/sdks": "^3.1.0",
+    "typescript": "^5.1.6"
+  },
+  "resolutions": {
+    "@vscode/vsce@^2.21.1": "patch:@vscode/vsce@npm:2.21.1#./.yarn/patches/@vscode-vsce-npm-2.21.1.patch"
+  },
+  "scripts": {
+    "clean": "yarn workspace extension clean",
+    "clean-install": "yarn install && git checkout -- .vscode/settings.json '.yarn/*/LICENSE'",
+    "compile": "yarn workspace extension compile",
+    "lint": "yarn workspace extension lint",
+    "package": "yarn workspace extension package",
+    "postinstall": "yarn sdks vscode",
+    "upgrade-all": "printf >&2 '%s\\n\\t%s\\n' 'Run the following command line manually:' 'yarn set version 4 && yarn install && yarn upgrade-packages' && false",
+    "upgrade-lockfile": "yarn up -R '**' && yarn clean-install",
+    "upgrade-packages": "yarn up '**' && yarn up -R '**' && yarn clean-install",
+    "upgrade-yarn-itself": "printf >&2 '%s\\n\\t%s\\n' 'Run the following command line manually:' 'yarn set version 4 && yarn install && yarn clean-install' && false"
+  },
+  "workspaces": [
+    "extension"
+  ],
+  "packageManager": "yarn@4.1.1"
+}

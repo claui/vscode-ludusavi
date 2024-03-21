@@ -1,0 +1,107 @@
+definitions:
+  FileConstraint:
+    type: object
+    properties:
+      os:
+        $ref: "#/definitions/Os"
+      store:
+        $ref: "#/definitions/Store"
+  LaunchConstraint:
+    type: object
+    properties:
+      bit:
+        $ref: "#/definitions/Bit"
+      os:
+        $ref: "#/definitions/Os"
+      store:
+        $ref: "#/definitions/Store"
+  RegistryConstraint:
+    type: object
+    properties:
+      store:
+        $ref: "#/definitions/Store"
+  Bit:
+    type: integer
+  Os:
+    type: string
+  Store:
+    type: string
+  Tag:
+    type: string
+
+type: object
+additionalProperties:
+  type: object
+  properties:
+    files:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          tags:
+            type: array
+            items:
+              $ref: "#/definitions/Tag"
+          when:
+            type: array
+            items:
+              $ref: "#/definitions/FileConstraint"
+    installDir:
+      type: object
+    launch:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: object
+          properties:
+            arguments:
+              type: string
+            workingDir:
+              type: string
+            when:
+              type: array
+              items:
+                $ref: "#/definitions/LaunchConstraint"
+    registry:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          tags:
+            type: array
+            items:
+              $ref: "#/definitions/Tag"
+          when:
+            type: array
+            items:
+              $ref: "#/definitions/RegistryConstraint"
+    steam:
+      type: object
+      properties:
+        id:
+          type: integer
+    gog:
+      type: object
+      properties:
+        id:
+          type: integer
+    id:
+      type: object
+      properties:
+        flatpak:
+          type: string
+        gogExtra:
+          type: array
+          items:
+            type: integer
+        steamExtra:
+          type: array
+          items:
+            type: integer
+    alias:
+      description: |
+        When this field is populated with another game's title,
+        the current entry's title can be used as a nickname to look up the other game.
+        The other fields in the current entry should be ignored.
+      type: string

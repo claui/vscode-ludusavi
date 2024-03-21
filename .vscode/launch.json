@@ -1,0 +1,17 @@
+{
+  "configurations": [
+    {
+      "name": "Launch Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/extension/build"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/extension/build/**/*.js",
+        "${workspaceFolder}/extension/build/**/*.js.map"
+      ],
+      "preLaunchTask": "Compile"
+    }
+  ]
+}

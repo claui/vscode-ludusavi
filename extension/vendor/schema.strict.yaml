@@ -1,0 +1,122 @@
+definitions:
+  FileConstraint:
+    type: object
+    properties:
+      os:
+        $ref: "#/definitions/Os"
+      store:
+        $ref: "#/definitions/Store"
+  LaunchConstraint:
+    type: object
+    properties:
+      bit:
+        $ref: "#/definitions/Bit"
+      os:
+        $ref: "#/definitions/Os"
+      store:
+        $ref: "#/definitions/Store"
+  RegistryConstraint:
+    type: object
+    properties:
+      store:
+        $ref: "#/definitions/Store"
+  Bit:
+    type: integer
+    enum:
+      - 32
+      - 64
+  Os:
+    type: string
+    enum:
+      - dos
+      - linux
+      - mac
+      - windows
+  Store:
+    type: string
+    enum:
+      - discord
+      - epic
+      - gog
+      - microsoft
+      - origin
+      - steam
+      - uplay
+  Tag:
+    type: string
+    enum:
+      - config
+      - save
+
+type: object
+additionalProperties:
+  type: object
+  properties:
+    files:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          tags:
+            type: array
+            items:
+              $ref: "#/definitions/Tag"
+          when:
+            type: array
+            items:
+              $ref: "#/definitions/FileConstraint"
+    installDir:
+      type: object
+    launch:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: object
+          properties:
+            arguments:
+              type: string
+            workingDir:
+              type: string
+            when:
+              type: array
+              items:
+                $ref: "#/definitions/LaunchConstraint"
+    registry:
+      type: object
+      additionalProperties:
+        type: object
+        properties:
+          tags:
+            type: array
+            items:
+              $ref: "#/definitions/Tag"
+          when:
+            type: array
+            items:
+              $ref: "#/definitions/RegistryConstraint"
+    steam:
+      type: object
+      properties:
+        id:
+          type: integer
+    gog:
+      type: object
+      properties:
+        id:
+          type: integer
+    id:
+      type: object
+      properties:
+        flatpak:
+          type: string
+        gogExtra:
+          type: array
+          items:
+            type: integer
+        steamExtra:
+          type: array
+          items:
+            type: integer
+    alias:
+      type: string

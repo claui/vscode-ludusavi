@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile",
+      "type": "shell",
+      "command": "if ! type nvm > /dev/null && [ \"${NVM_DIR}\" ] && [ -s \"${NVM_DIR}/nvm.sh\" ]; then . \"${NVM_DIR}/nvm.sh\"; nvm use; fi; node --version && yarn compile",
+      "args": [],
+      "problemMatcher": [
+        "$tsc"
+      ],
+      "presentation": {
+        "reveal": "silent"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

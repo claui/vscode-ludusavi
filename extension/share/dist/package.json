@@ -1,0 +1,48 @@
+{
+  "name": "ludusavi",
+  "version": "0.1.0-snapshot",
+  "publisher": "claui",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "license": "SEE LICENSE IN README.md",
+  "displayName": "Ludusavi",
+  "description": "Support for Ludusavi manifests",
+  "categories": ["Other"],
+  "keywords": ["schema", "yaml"],
+  "main": "extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ludusavi.action.showLog",
+        "title": "Ludusavi: Show extension log"
+      }
+    ],
+    "yamlValidation": [
+      {
+        "fileMatch": "manifest.yaml",
+        "url": "./vendor/schema.strict.yaml"
+      },
+      {
+        "fileMatch": "manifest-override.yaml",
+        "url": "./vendor/schema.strict.yaml"
+      },
+      {
+        "fileMatch": ".ludusavi.yaml",
+        "url": "./vendor/schema.yaml"
+      }
+    ]
+  },
+  "extensionDependencies": [
+    "redhat.vscode-yaml"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "activationEvents": [
+    "workspaceContains:manifest.yaml",
+    "workspaceContains:manifest-override.yaml",
+    "workspaceContains:.ludusavi.yaml"
+  ],
+  "repository": "github:claui/vscode-ludusavi"
+}
