@@ -1,6 +1,6 @@
 {
   "name": "ludusavi",
-  "version": "0.1.0-snapshot",
+  "version": "0.2.0",
   "publisher": "claui",
   "engines": {
     "vscode": "^1.87.0"
